@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @WebServlet("/person")
 public class PersonServlet extends HttpServlet {
 
-    //JSONconverter<Person> jsonConverter = new JSONconverter<Person>();
+    JSONconverter<Person> jsonConverter = new JSONconverter<Person>();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
@@ -30,9 +30,10 @@ public class PersonServlet extends HttpServlet {
 
             PreparedStatement statement = con.prepareStatement("insert into person values(?, ?, ?)");
 
-            Gson jsonConverter =new GsonBuilder().create();
-            Person person = jsonConverter.fromJson(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),Person.class);
+//            Gson jsonConverter =new GsonBuilder().create();
+//            Person person = jsonConverter.fromJson(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),Person.class);
 
+            Person person = jsonConverter.JSONtoObject(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),Person.class);
             statement.setInt(1,person.getId());
 
             statement.setString(2,person.getName());
