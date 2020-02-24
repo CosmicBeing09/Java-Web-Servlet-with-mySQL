@@ -7,12 +7,12 @@
 
 --> Create a database named: demo-servlet
 
---> Run the query: 
+--> Run the query:  
+
                   CREATE TABLE person(
                   id int,
                   name varchar(45),
-                  age int    
-                   );
+                  age int);
                    
 --> Add apache server in your IDE (For Intelij Idea, at first download apache server core from offical site and unzip it. Goto Run -> Edit
     Configuration -> + -> select tomcat server -> local -> configure, and then add the unzipped apache server)
