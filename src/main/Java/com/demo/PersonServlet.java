@@ -80,14 +80,17 @@ public class PersonServlet extends HttpServlet {
                 personArrayList.add(temp);
 
             }
+
             PrintWriter out = resp.getWriter();
-            if(req.getContentType().equals("application/xml")){
+            if(req.getHeader("Accept").equals("application/xml")){
                 PersonXMLconverter personXMLconverter = new PersonXMLconverter();
 
                 PersonWrapper personWrapper = new PersonWrapper();
                 personWrapper.setPersonList(personArrayList);
 
                 out.println(personXMLconverter.convertPersonListToXml(personWrapper));
+
+                resp.setContentType("application/xml");
 
             }
 
@@ -97,6 +100,7 @@ public class PersonServlet extends HttpServlet {
                 String jsonResponse = gson.toJson(personArrayList);
 
                 out.println(jsonResponse);
+                resp.setContentType("application/json");
             }
 
 
