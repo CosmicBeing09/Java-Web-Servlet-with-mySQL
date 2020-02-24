@@ -2,18 +2,25 @@ package com.demo.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+import javax.xml.bind.annotation.*;
 
+
+@XmlRootElement(name = "person")
+@XmlType(propOrder = {"id","name","age"})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Person{
 
+    @XmlElement
     @SerializedName("id")
-    int id;
+    private int id;
 
+    @XmlElement
     @SerializedName("name")
-    String name;
+    private String name;
 
+    @XmlElement
     @SerializedName("age")
-    int age;
+    private int age;
 
     public Person(int id, String name, int age) {
         this.id = id;
