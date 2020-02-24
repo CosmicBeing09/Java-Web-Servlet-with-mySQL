@@ -1,5 +1,6 @@
 # Java-Web-Servlet-with-mySQL
 --> Basic servlet operations: doGet and doPost
+
 --> MySQL database is used with the help of my-sql connector jars
 --> To connect with database, user can use xampp/wampp and start Apache and MySQL server
 --> Create a database named: demo-servlet
