@@ -21,7 +21,7 @@ public class Validate extends HttpServlet {
             String name = req.getParameter("user");
             String password = req.getParameter("pass");
 
-            if(password.equals("hey")){
+            if(password.equals("123")){
                 RequestDispatcher rd = req.getRequestDispatcher("welcome");
                 rd.forward(req,resp);
             }

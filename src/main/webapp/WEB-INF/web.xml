@@ -13,5 +13,9 @@
     <filter-name>filter</filter-name>
     <url-pattern>/validate</url-pattern>
   </filter-mapping>
+
+<!--  <welcome-file-list>-->
+<!--    <welcome-file>test.jsp</welcome-file>-->
+<!--  </welcome-file-list>-->
 </web-app>
 

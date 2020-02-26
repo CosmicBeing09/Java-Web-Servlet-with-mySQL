@@ -18,6 +18,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 
-@WebServlet("/person")
+@WebServlet("/PersonServlet")
 public class PersonServlet extends HttpServlet {
 
     JSONconverter<Person> jsonConverter = new JSONconverter<Person>();
@@ -38,7 +39,11 @@ public class PersonServlet extends HttpServlet {
 
             PreparedStatement statement = con.prepareStatement("insert into person values(?, ?, ?)");
 
-            Person person = jsonConverter.JSONtoObject(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),Person.class);
+            Gson gson = new GsonBuilder().create();
+
+            Person person = gson.fromJson(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())),Person.class);
+            
+
             statement.setInt(1,person.getId());
 
             statement.setString(2,person.getName());
@@ -62,6 +67,8 @@ public class PersonServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
 
         Connection con = null;
         try {

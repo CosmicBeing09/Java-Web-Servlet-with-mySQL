@@ -1,5 +1,6 @@
 package com.demo;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,12 +12,15 @@ import java.io.PrintWriter;
 @WebServlet("/welcome")
 public class Welcome extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = resp.getWriter();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
 
         try {
-            out.println("<h2> Welcome Client</h2>");
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/test.jsp");
+            request.setAttribute("name",request.getParameter("user"));
+            rd.forward(request,response);
+           // out.println("<h2> Welcome Client</h2>");
 
         }finally {
             out.close();
